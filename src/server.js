@@ -1,12 +1,17 @@
-const express = require('express');
+"use strict";
+
+import express from "express";
+import bodyParser from "body-parser";
+import cors from 'cors';
+import router from "./routes/api.js";
+
 const app = express();
-const port = 3000;
+const port = 8000;
 const ip = "127.0.0.1";
 
-app.get('/', (req, res) => {
-  res.send('DUAR');
-});
-
+app.use(cors());
+app.use(bodyParser.json());
+app.use("/api",router);
 app.listen(port, ip, () => {
-  console.log(`Classifund-Backend listening on http://${ip}:${port}`);
+    console.log(`Server running at http://${ip}:${port}/`);
 });
